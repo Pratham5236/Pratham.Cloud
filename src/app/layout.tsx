@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Pratham Gajjar | Software Developer - Coming Soon',
+  title: 'Pratham | Architecting Software',
   description:
     'Pratham Gajjar - Backend developer specializing in real-time systems, cloud architecture, and modern web technologies. Portfolio coming soon.',
   keywords: [
