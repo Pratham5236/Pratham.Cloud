@@ -1,23 +1,47 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --accent-blue: #58a6ff;
+  --accent-purple: #bc8cff;
+  --accent-green: #56d364;
+  --accent-orange: #ffa657;
+  --accent-red: #ff7b72;
+  --accent-yellow: #e3b341;
+  --border: #30363d;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0d1117;
+    --foreground: #e6edf3;
   }
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono), 'Courier New', monospace;
+  min-height: 100vh;
+}
+
+/* Terminal-like cursor blinking */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  animation: blink 1s infinite;
 }
 
 /* Custom animations */
@@ -32,6 +56,50 @@ body {
   }
 }
 
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
 .animate-in {
   animation-duration: 0.5s;
   animation-fill-mode: both;
@@ -41,6 +109,144 @@ body {
   animation-name: slide-in-from-left;
 }
 
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--foreground);
+  white-space: nowrap;
+  margin: 0 auto;
+  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-blue),
+    var(--accent-purple),
+    transparent
+  );
+  animation: scan-line 4s ease-in-out infinite;
+  z-index: 1000;
+}
+
+/* Terminal glow effects - now colorful! */
+.terminal-glow {
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.1),
+    inset 0 0 20px rgba(188, 140, 255, 0.05);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--accent-blue);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(88, 166, 255, 0.3),
+    inset 0 0 30px rgba(188, 140, 255, 0.1);
+  transform: scale(1.02);
+}
+
+/* Command type specific colors */
+.command-success {
+  color: var(--accent-green);
+  text-shadow: 0 0 10px var(--accent-green);
+}
+
+.command-error {
+  color: var(--accent-red);
+  text-shadow: 0 0 10px var(--accent-red);
+}
+
+.command-system {
+  color: var(--accent-yellow);
+  text-shadow: 0 0 10px var(--accent-yellow);
+}
+
+.command-output {
+  color: var(--accent-blue);
+}
+
+.command-input {
+  color: var(--accent-purple);
+  text-shadow: 0 0 8px var(--accent-purple);
+}
+
+/* Rainbow text effect for special commands */
+@keyframes rainbow-text {
+  0% {
+    color: var(--accent-red);
+  }
+  16.66% {
+    color: var(--accent-orange);
+  }
+  33.33% {
+    color: var(--accent-yellow);
+  }
+  50% {
+    color: var(--accent-green);
+  }
+  66.66% {
+    color: var(--accent-blue);
+  }
+  83.33% {
+    color: var(--accent-purple);
+  }
+  100% {
+    color: var(--accent-red);
+  }
+}
+
+.rainbow-text {
+  animation: rainbow-text 3s ease-in-out infinite;
+}
+
+/* Gradient text for titles */
+.gradient-text {
+  background: linear-gradient(
+    45deg,
+    var(--accent-blue),
+    var(--accent-purple),
+    var(--accent-green),
+    var(--accent-orange)
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced button styles */
+.terminal-button {
+  background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+  border: 1px solid var(--accent-blue);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.terminal-button:hover {
+  background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+  transform: translateY(-2px);
+}
+
 /* Scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
   width: 8px;
@@ -48,14 +254,129 @@ body {
 
 ::-webkit-scrollbar-track {
   background: var(--background);
+  border: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--foreground);
+  background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
-  opacity: 0.8;
+  background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 0, 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(88, 166, 255, 0.3);
+}
+
+/* Matrix rain effect (optional background) */
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.matrix-char {
+  position: absolute;
+  background: linear-gradient(
+    180deg,
+    var(--accent-blue),
+    var(--accent-purple),
+    var(--accent-green)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: monospace;
+  animation: matrix-rain 8s linear infinite;
+  opacity: 0.6;
+}
+
+/* Glitch effect for special elements */
+.glitch {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+/* Terminal screen effect */
+.terminal-screen {
+  background: linear-gradient(
+      180deg,
+      transparent 50%,
+      rgba(88, 166, 255, 0.03) 50%
+    ),
+    radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  background-size: 100% 4px, 100% 100%;
+}
+
+/* Hover effects for interactive elements */
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Focus effects for inputs */
+input:focus {
+  outline: none;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Button effects */
+.terminal-button {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  color: #00ff00;
+  transition: all 0.3s ease;
+}
+
+.terminal-button:hover {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: rgba(0, 255, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Status indicators */
+.status-live {
+  color: #00ff00;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-dev {
+  color: #ffff00;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-archived {
+  color: #888888;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
