@@ -162,6 +162,10 @@ export default function Home() {
       'output'
     );
     addToHistory(
+      '│   infra       - Show infrastructure & hosting details      │',
+      'output'
+    );
+    addToHistory(
       '│   neofetch    - Show system information with ASCII art     │',
       'output'
     );
@@ -391,6 +395,13 @@ export default function Home() {
         timestamp: new Date(),
       },
       {
+        id: '6.5',
+        content:
+          '🏠 Proudly hosted on custom home infrastructure with Cloudflare protection - type "infra" to learn more!',
+        type: 'system',
+        timestamp: new Date(),
+      },
+      {
         id: '7',
         content: '',
         type: 'output',
@@ -603,6 +614,21 @@ export default function Home() {
         addToHistory('⏰ Uptime: Building since 2020', 'output');
         addToHistory('☕ Coffee Level: 99%', 'output');
         addToHistory('🚀 Status: Ready to build amazing things!', 'output');
+        addToHistory('', 'output');
+        addToHistory('🏗️  Infrastructure Flex:', 'system');
+        addToHistory('🏠 Hosted on: Custom Home Server Setup', 'output');
+        addToHistory(
+          '🌐 Proxy: Cloudflare Tunnels + DDoS Protection',
+          'output'
+        );
+        addToHistory(
+          '🛡️  Security: Enterprise-grade home infrastructure',
+          'output'
+        );
+        addToHistory(
+          '⚡ Performance: Self-managed cloud architecture',
+          'output'
+        );
         break;
       case 'ascii':
         addToHistory('🎨 Available ASCII Art:', 'output');
@@ -722,6 +748,43 @@ export default function Home() {
           'output'
         );
         break;
+      case 'infra':
+      case 'infrastructure':
+        addToHistory('🏗️  Infrastructure Architecture Showcase', 'system');
+        addToHistory('═══════════════════════════════════════════', 'output');
+        addToHistory('', 'output');
+        addToHistory('🏠 Home Server Setup:', 'success');
+        addToHistory('   • Custom built server infrastructure', 'output');
+        addToHistory('   • Self-managed cloud architecture', 'output');
+        addToHistory('   • 24/7 uptime monitoring & maintenance', 'output');
+        addToHistory('', 'output');
+        addToHistory('🌐 Cloudflare Integration:', 'success');
+        addToHistory(
+          '   • Cloudflare Tunnels for secure connections',
+          'output'
+        );
+        addToHistory('   • Enterprise DDoS protection', 'output');
+        addToHistory('   • Global CDN for optimal performance', 'output');
+        addToHistory('   • Zero-downtime deployments', 'output');
+        addToHistory('', 'output');
+        addToHistory('🛡️  Security & Performance:', 'success');
+        addToHistory('   • SSL/TLS encryption end-to-end', 'output');
+        addToHistory('   • Rate limiting & bot protection', 'output');
+        addToHistory('   • Real-time threat monitoring', 'output');
+        addToHistory('   • Automated backup systems', 'output');
+        addToHistory('', 'output');
+        addToHistory('💡 Why Host at Home?', 'system');
+        addToHistory('   • Full control over infrastructure', 'output');
+        addToHistory('   • Cost-effective scaling', 'output');
+        addToHistory('   • Learning & experimentation freedom', 'output');
+        addToHistory('   • Ultimate flexibility & customization', 'output');
+        addToHistory('', 'output');
+        addToHistory(
+          '🔥 This portfolio is living proof of enterprise-grade',
+          'output'
+        );
+        addToHistory('   home infrastructure capabilities!', 'output');
+        break;
       case 'joke':
         const jokes = [
           '🤖 Why do programmers prefer dark mode? Because light attracts bugs!',
@@ -756,6 +819,8 @@ export default function Home() {
           'uptime',
           'weather',
           'about',
+          'infra',
+          'infrastructure',
           'joke',
         ];
         const suggestions = allCommands.filter(
